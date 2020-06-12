@@ -28,6 +28,27 @@ function AppDocument(props: { children: React.ReactNode }) {
   );
 }
 
+export function ClientOnly(props: { children: React.ReactNode }) {
+  const [didMount, setDidMount] = React.useState(false);
+  React.useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  if (!didMount) {
+    // do not render anything on initial
+    return null;
+  }
+  return (
+    <React.Suspense fallback={<div>loading...</div>}>
+      {props.children}
+    </React.Suspense>
+  );
+}
+
 export function AppRoot(props: { children: React.ReactNode }) {
-  return <AppDocument>{props.children}</AppDocument>;
+  return (
+    <AppDocument>
+      <ClientOnly>{props.children}</ClientOnly>
+    </AppDocument>
+  );
 }
