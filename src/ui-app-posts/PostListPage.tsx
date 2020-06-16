@@ -6,6 +6,9 @@ import { useFetchList } from "../pkg-resources/useFetchList";
 import { PostPayload } from "../domain-posts/types";
 import { DefaultErrorLayout } from "src/ui-app/DefaultErrorLayout";
 import { TextLink } from "src/ui-base/links";
+import { PostListing } from "src/ui-posts/PostListing";
+import { Heading } from "src/ui-styles/structure";
+import { VSpace } from "src/ui-styles/system";
 
 type InitialProps = {};
 
@@ -21,17 +24,9 @@ export function PostListPage(props: InitialProps) {
   }
   return (
     <DefaultLayout>
-      <ul>
-        {posts.data.map((item) => {
-          return (
-            <React.Fragment key={item.id}>
-              <li>
-                <TextLink href={`/post/${item.id}`}>{item.title}</TextLink>
-              </li>
-            </React.Fragment>
-          );
-        })}
-      </ul>
+      <Heading level={1}>Posts</Heading>
+      <VSpace size={[1, 2, 3]} />
+      <PostListing items={posts.data} />
     </DefaultLayout>
   );
 }
