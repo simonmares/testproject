@@ -1,7 +1,9 @@
 import React from "react";
 import { Heading } from "src/ui-styles/structure";
+import { useTheme } from "src/pkg-theme/useTheme";
 
 export function AppHeader() {
+  const { colors } = useTheme();
   return (
     <header
       css={{
@@ -18,7 +20,7 @@ export function AppHeader() {
         level={1}
         css={{
           color: "white",
-          textShadow: "1px 1px 1px #00a3e0",
+          textShadow: `1px 1px 1px ${colors.primary_900}`,
           fontWeight: "bold",
         }}
       >

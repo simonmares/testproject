@@ -2,6 +2,7 @@ import React from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import { AppErrorBoundary } from "src/ui-app/AppErrorBoundary";
+import { PageLoader } from "src/ui-design/PageLoader";
 
 function AppDocument(props: { children: React.ReactNode }) {
   return (
@@ -40,7 +41,7 @@ function ClientOnly(props: { children: React.ReactNode }) {
     return null;
   }
   return (
-    <React.Suspense fallback={<div>loading...</div>}>
+    <React.Suspense fallback={<PageLoader />}>
       {props.children}
     </React.Suspense>
   );
