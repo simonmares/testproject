@@ -1,5 +1,15 @@
 import React from "react";
 
+const headingResetCss = {
+  fontSize: "inherit",
+  fontWeight: "normal",
+  margin: "0",
+  marginBlockEnd: "0",
+  marginBlockStart: "0",
+  marginInlineEnd: "0",
+  marginInlineStart: "0",
+} as const;
+
 type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
 
 // Note: this is type-safe and simple approach
@@ -15,11 +25,25 @@ const levelToHtmlHeadingElements: Record<
   6: "h6" as const,
 };
 
+const levelToFontSize: Record<HeadingLevels, number> = {
+  1: 42,
+  2: 32,
+  3: 22,
+  4: 16,
+  5: 16,
+  6: 16,
+};
+
 export function Heading(props: {
   level: HeadingLevels;
   children: React.ReactNode;
 }) {
   const { level } = props;
   const Component = levelToHtmlHeadingElements[level];
-  return <Component>{props.children}</Component>;
+  const overrideCss = { fontSize: levelToFontSize[level] };
+  return (
+    <Component css={{ ...headingResetCss, ...overrideCss }}>
+      {props.children}
+    </Component>
+  );
 }

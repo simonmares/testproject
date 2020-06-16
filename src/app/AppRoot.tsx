@@ -29,7 +29,7 @@ function AppDocument(props: { children: React.ReactNode }) {
   );
 }
 
-export function ClientOnly(props: { children: React.ReactNode }) {
+function ClientOnly(props: { children: React.ReactNode }) {
   const [didMount, setDidMount] = React.useState(false);
   React.useEffect(() => {
     setDidMount(true);
