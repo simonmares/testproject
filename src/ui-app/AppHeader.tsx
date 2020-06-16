@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading } from "src/ui-styles/structure";
 
-export function AppHeader(props: {}) {
+export function AppHeader() {
   return (
     <header
       css={{
@@ -10,10 +10,20 @@ export function AppHeader(props: {}) {
         boxSizing: "border-box",
         background: "#c8f0ff",
         color: "#4e4e4e",
-        boxShadow: "0px 1px 1px #d4d4d4",
+        boxShadow: "0px 1px 1px #66c3e6",
       }}
     >
-      <Heading level={1}>App</Heading>
+      <Heading
+        fontSize={32}
+        level={1}
+        css={{
+          color: "white",
+          textShadow: "1px 1px 1px #00a3e0",
+          fontWeight: "bold",
+        }}
+      >
+        App
+      </Heading>
     </header>
   );
 }

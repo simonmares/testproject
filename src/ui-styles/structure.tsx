@@ -36,13 +36,14 @@ const levelToFontSize: Record<HeadingLevels, number> = {
 
 export function Heading(props: {
   level: HeadingLevels;
+  fontSize?: number;
   children: React.ReactNode;
 }) {
-  const { level } = props;
+  const { level, fontSize, ...passProps } = props;
   const Component = levelToHtmlHeadingElements[level];
-  const overrideCss = { fontSize: levelToFontSize[level] };
+  const overrideCss = { fontSize: fontSize ?? levelToFontSize[level] };
   return (
-    <Component css={{ ...headingResetCss, ...overrideCss }}>
+    <Component css={{ ...headingResetCss, ...overrideCss }} {...passProps}>
       {props.children}
     </Component>
   );

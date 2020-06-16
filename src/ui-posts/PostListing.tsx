@@ -4,6 +4,15 @@ import { TextLink } from "src/ui-base/links";
 import { mq } from "src/utils-styles/responsive";
 import { UnorderedList } from "src/ui-styles/resetHtml";
 
+function PostItem(props: { post: PostPayload }) {
+  const { post } = props;
+  return (
+    <article>
+      <TextLink href={`/post/${post.id}`}>{post.title}</TextLink>
+    </article>
+  );
+}
+
 export function PostListing(props: { items: PostPayload[] }) {
   const { items } = props;
   return (
@@ -14,11 +23,11 @@ export function PostListing(props: { items: PostPayload[] }) {
         gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"],
       })}
     >
-      {items.map((item) => {
+      {items.map((post) => {
         return (
-          <React.Fragment key={item.id}>
+          <React.Fragment key={post.id}>
             <li>
-              <TextLink href={`/post/${item.id}`}>{item.title}</TextLink>
+              <PostItem post={post} />
             </li>
           </React.Fragment>
         );

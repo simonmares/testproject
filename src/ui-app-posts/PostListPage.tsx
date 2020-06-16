@@ -9,6 +9,7 @@ import { TextLink } from "src/ui-base/links";
 import { PostListing } from "src/ui-posts/PostListing";
 import { Heading } from "src/ui-styles/structure";
 import { VSpace } from "src/ui-styles/system";
+import { PageTitle } from "src/ui-design/PageTitle";
 
 type InitialProps = {};
 
@@ -24,7 +25,7 @@ export function PostListPage(props: InitialProps) {
   }
   return (
     <DefaultLayout>
-      <Heading level={1}>Posts</Heading>
+      <PageTitle>Posts</PageTitle>
       <VSpace size={[1, 2, 3]} />
       <PostListing items={posts.data} />
     </DefaultLayout>
