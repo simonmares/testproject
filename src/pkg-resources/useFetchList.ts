@@ -1,7 +1,8 @@
 import React from "react";
 
 import { useFetchResource } from "./useFetchResource";
+import { FetchResourceKey } from "./types";
 
-export function useFetchList<TModel, TError>(url: string) {
-  return useFetchResource<TModel[], TError>(url);
+export function useFetchList<TModel, TError>(key: FetchResourceKey) {
+  return useFetchResource<TModel[], TError>(key);
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
+import { AppErrorBoundary } from "src/ui-app/AppErrorBoundary";
 
 function AppDocument(props: { children: React.ReactNode }) {
   return (
@@ -48,7 +49,9 @@ export function ClientOnly(props: { children: React.ReactNode }) {
 export function AppRoot(props: { children: React.ReactNode }) {
   return (
     <AppDocument>
-      <ClientOnly>{props.children}</ClientOnly>
+      <AppErrorBoundary>
+        <ClientOnly>{props.children}</ClientOnly>
+      </AppErrorBoundary>
     </AppDocument>
   );
 }

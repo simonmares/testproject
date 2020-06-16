@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { useEffect } from "react";
 
 export function DefaultErrorLayout(props: {}) {
-  return <div>Something went wrong.</div>
+  return <div>Something went wrong.</div>;
 }
