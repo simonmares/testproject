@@ -7,6 +7,10 @@ const theme = {
 
     // secondary
     secondary_900: "#EF476F",
+
+    tone_quiet: "#737373",
+    tone_highlight: "hotpink",
+    tone_highlight_300: "#ffc6e2",
   },
 };
 

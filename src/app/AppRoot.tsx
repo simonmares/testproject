@@ -21,6 +21,8 @@ function AppDocument(props: { children: React.ReactNode }) {
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
               Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
               sans-serif;
+
+            color: #1f1f1f;
           }
         `}
       />
@@ -41,9 +43,7 @@ function ClientOnly(props: { children: React.ReactNode }) {
     return null;
   }
   return (
-    <React.Suspense fallback={<PageLoader />}>
-      {props.children}
-    </React.Suspense>
+    <React.Suspense fallback={<PageLoader />}>{props.children}</React.Suspense>
   );
 }
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { ResponsiveStyleProp, mq } from "src/utils-styles/responsive";
+import { useTheme } from "src/pkg-theme/useTheme";
+import { AppTheme } from "src/pkg-theme/types";
 
 //
 // system >>>
@@ -30,4 +32,13 @@ export function VSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
 export function HSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
   const resolvedSpace = useSystemSpacing(props.size ?? 1);
   return <span css={mq({ width: resolvedSpace })} />;
+}
+
+export function SystemText(props: {
+  children: React.ReactNode;
+  color: keyof AppTheme["colors"];
+}) {
+  const { colors } = useTheme();
+  const color = props.color ? colors[props.color] : "";
+  return <span css={{ color }}>{props.children}</span>;
 }

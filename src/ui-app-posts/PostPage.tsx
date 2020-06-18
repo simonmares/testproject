@@ -11,6 +11,8 @@ import { PrimaryButton } from "src/ui-design/PrimaryButton";
 import { VSpace } from "src/ui-styles/system";
 import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
+import { PostDetail } from "src/ui-posts/PostDetail";
+import { PageInlineNotification } from "src/ui-base/PageInlineNotification";
 
 /**
  * Page loading logic:
@@ -43,36 +45,29 @@ export function PostPage(props: {}) {
 
   const post = postResource.data;
   const user = userResource.data;
+  const comments = commentsResource.data;
+  const commentsFetchFailed = !commentsResource.data;
   return (
     <DefaultLayout>
-      <div>{post.title}</div>
-      by <TextLink href={`/user/${user.id}`}>{user.name}</TextLink>
-      <VSpace size={2} />
-      {commentsResource.data ? (
-        <ul>
-          {commentsResource.data.map((item) => {
-            return (
-              <React.Fragment key={item.id}>
-                <li>
-                  {item.name} (by {item.email})
-                </li>
-              </React.Fragment>
-            );
-          })}
-        </ul>
-      ) : (
-        <div>
-          Comments failed to fech{" "}
-          <PrimaryButton
-            onClick={() => {
-              commentsResource.revalidate();
-            }}
-            size="small"
-          >
-            Retry
-          </PrimaryButton>
-        </div>
-      )}
+      {commentsFetchFailed ? (
+        <PageInlineNotification.Layout>
+          <PageInlineNotification tone="warning">
+            <div>
+              Comments failed to fech{" "}
+              <PrimaryButton
+                onClick={() => {
+                  commentsResource.revalidate();
+                }}
+                size="small"
+              >
+                Retry
+              </PrimaryButton>
+            </div>
+          </PageInlineNotification>
+        </PageInlineNotification.Layout>
+      ) : null}
+
+      <PostDetail comments={comments || []} post={post} user={user} />
     </DefaultLayout>
   );
 }
