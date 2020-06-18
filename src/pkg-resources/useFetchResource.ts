@@ -1,7 +1,13 @@
 import useSWR from "swr";
 import { FetchResourceKey } from "./types";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+function createFetcher() {
+  return (url: string) => {
+    return fetch(url, { mode: "cors" }).then((r) => r.json());
+  };
+}
+
+const fetcher = createFetcher();
 
 /**
  * A base hook to fetch resources.
