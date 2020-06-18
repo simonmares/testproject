@@ -1,6 +1,7 @@
 import React from "react";
+import { WithHtmlProps } from "src/app-types/components";
 
-export function AppFooter(props: {}) {
+export function AppFooter(props: WithHtmlProps<{}>) {
   return (
     <footer
       css={{
@@ -11,6 +12,7 @@ export function AppFooter(props: {}) {
         display: "flex",
         justifyContent: "center",
       }}
+      {...props}
     >
       <div>App (2020)</div>
     </footer>

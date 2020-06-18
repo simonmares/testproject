@@ -6,7 +6,7 @@ import { mq } from "src/utils-styles/responsive";
 
 export function DefaultLayout(props: { children: React.ReactNode }) {
   return (
-    <div>
+    <div css={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <AppHeader />
       <main
         css={mq({
@@ -17,12 +17,12 @@ export function DefaultLayout(props: { children: React.ReactNode }) {
           ],
           boxSizing: "border-box",
           maxWidth: 1200,
-          margin: "auto",
+          margin: "0 auto",
         })}
       >
         {props.children}
       </main>
-      <AppFooter />
+      <AppFooter css={{ marginTop: "auto" }} />
     </div>
   );
 }
