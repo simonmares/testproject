@@ -1,5 +1,6 @@
 import React from "react";
 import Link, { LinkProps } from "next/link";
+import { useTheme } from "src/pkg-theme/useTheme";
 
 type BaseLinkProps = { href: LinkProps["href"]; children: React.ReactNode };
 
@@ -13,12 +14,14 @@ function BaseLink(props: BaseLinkProps) {
 }
 
 export function TextLink(props: BaseLinkProps) {
+  const { colors } = useTheme();
   return (
     <BaseLink
       css={{
         textDecoration: "none",
         color: "inherit",
-        "&:hover": { color: "hotpink", opacity: "75%" },
+        transition: "color 200ms ease-in",
+        "&:hover": { color: colors.secondary_900 },
       }}
       {...props}
     />
