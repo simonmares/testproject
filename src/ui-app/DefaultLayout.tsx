@@ -1,13 +1,11 @@
 import React from "react";
 
-import { AppHeader } from "./AppHeader";
-import { AppFooter } from "./AppFooter";
 import { mq } from "src/utils-styles/responsive";
+import { AppLayout } from "./AppLayout";
 
 export function DefaultLayout(props: { children: React.ReactNode }) {
   return (
-    <div css={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <AppHeader />
+    <AppLayout>
       <main
         css={mq({
           padding: [
@@ -22,7 +20,6 @@ export function DefaultLayout(props: { children: React.ReactNode }) {
       >
         {props.children}
       </main>
-      <AppFooter css={{ marginTop: "auto" }} />
-    </div>
+    </AppLayout>
   );
 }
