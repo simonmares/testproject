@@ -40,11 +40,11 @@ export function DotAnimation(props: { color: string }) {
           }
         }
 
-        span:nth-child(2) {
+        span:nth-of-type(2) {
           animation-delay: 0.2s;
         }
 
-        span:nth-child(3) {
+        span:nth-of-type(3) {
           animation-delay: 0.4s;
         }
       `}
