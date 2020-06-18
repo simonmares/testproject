@@ -18,7 +18,6 @@ export function TextLink(props: BaseLinkProps) {
       css={{
         textDecoration: "none",
         color: "inherit",
-        display: "inline-block",
         "&:hover": { color: "hotpink", opacity: "75%" },
       }}
       {...props}
@@ -31,7 +30,7 @@ export function BlockLink(props: BaseLinkProps & { label: string }) {
   return (
     <BaseLink
       css={{
-        display: "block",
+        display: "inline-block",
         textDecoration: "none",
         color: "inherit",
         "&:hover": { color: "inherit", opacity: "75%" },
