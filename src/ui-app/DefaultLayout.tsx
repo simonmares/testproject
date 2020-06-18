@@ -6,7 +6,7 @@ import { AppLayout } from "./AppLayout";
 export function DefaultLayout(props: { children: React.ReactNode }) {
   return (
     <AppLayout>
-      <main
+      <div
         css={mq({
           padding: [
             "16px 8px 64px 8px",
@@ -19,7 +19,7 @@ export function DefaultLayout(props: { children: React.ReactNode }) {
         })}
       >
         {props.children}
-      </main>
+      </div>
     </AppLayout>
   );
 }

@@ -8,7 +8,7 @@ export function AppLayout(props: { children: React.ReactNode }) {
   return (
     <div css={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <AppHeader />
-      {props.children}
+      <main>{props.children}</main>
       <AppFooter css={{ marginTop: "auto" }} />
     </div>
   );
