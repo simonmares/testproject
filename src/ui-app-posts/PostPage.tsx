@@ -23,7 +23,7 @@ export function PostPage(props: {}) {
   const postId = router.query.id;
 
   const postResource = useFetchResource<PostPayload, unknown>(
-    `https://jsonplaceholder.typicode.com/posts/${postId}/`
+    `https://jsonplaceholder.typicode.com/posts/${postId}`
   );
   const commentsResource = useFetchList<CommentPayload, unknown>(
     `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
@@ -31,7 +31,7 @@ export function PostPage(props: {}) {
 
   const userId = postResource.data?.userId;
   const userResource = useFetchResource<UserPayload, unknown>(() =>
-    userId ? `https://jsonplaceholder.typicode.com/users/${userId}/` : null
+    userId ? `https://jsonplaceholder.typicode.com/users/${userId}` : null
   );
 
   if (postResource.error || userResource.error) {
