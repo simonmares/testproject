@@ -13,25 +13,25 @@ function BaseLink(props: BaseLinkProps) {
   );
 }
 
-export function TextLink(props: BaseLinkProps) {
+function useTextLinkStyle() {
   const { colors } = useTheme();
   const activeStyle = {
     color: colors.tone_highlight,
     borderBottomColor: colors.tone_highlight,
   };
-  return (
-    <BaseLink
-      css={{
-        textDecoration: "none",
-        borderBottom: `2px solid ${colors.tone_highlight_300}`,
-        color: "inherit",
-        // transition: "color,border 200ms ease-in",
-        "&:focus": activeStyle,
-        "&:hover": activeStyle,
-      }}
-      {...props}
-    />
-  );
+  return {
+    textDecoration: "none",
+    borderBottom: `2px solid ${colors.greyscale_300}`,
+    color: "inherit",
+    // transition: "color,border 200ms ease-in",
+    "&:focus": activeStyle,
+    "&:hover": activeStyle,
+  };
+}
+
+export function TextLink(props: BaseLinkProps) {
+  const textLinkStyle = useTextLinkStyle();
+  return <BaseLink css={textLinkStyle} {...props} />;
 }
 
 export function BlockLink(props: BaseLinkProps & { label: string }) {
@@ -47,5 +47,14 @@ export function BlockLink(props: BaseLinkProps & { label: string }) {
       aria-label={label}
       {...passProps}
     />
+  );
+}
+
+export function ExternalTextLink(props: React.ComponentProps<"a">) {
+  const textLinkStyle = useTextLinkStyle();
+  return (
+    <a {...props} css={textLinkStyle}>
+      {props.children}
+    </a>
   );
 }

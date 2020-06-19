@@ -83,7 +83,7 @@ export function PageLoader(props: {}) {
             transition: "opacity 0.3s ease-in-out",
           }}
         >
-          Loading
+          Just a second
         </span>{" "}
         <DotAnimation
           css={{

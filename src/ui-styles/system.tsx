@@ -1,28 +1,18 @@
 import React from "react";
 import { ResponsiveStyleProp, mq } from "src/utils-styles/responsive";
 import { useTheme } from "src/pkg-theme/useTheme";
-import { AppTheme } from "src/pkg-theme/types";
+import { AppTheme, SystemSpec } from "src/pkg-theme/types";
+import { WithHtmlProps } from "src/app-types/components";
 
-//
-// system >>>
-//
-// can go to own file once its bigger
-//
-
-type SpacingSize = 0 | 1 | 2 | 3 | 4;
-
-const spacingToValues = { 0: 0, 1: 8, 2: 16, 3: 32, 4: 64 };
+type SpacingSize = SystemSpec["space"];
 
 function useSystemSpacing(size: ResponsiveStyleProp<SpacingSize>) {
+  const { system } = useTheme();
   if (Array.isArray(size)) {
-    return size.map((val) => spacingToValues[val]);
+    return size.map((val) => system.space(val));
   }
-  return spacingToValues[size];
+  return system.space(size);
 }
-
-//
-// >>> system
-//
 
 export function VSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
   const resolvedSpace = useSystemSpacing(props.size ?? 1);
@@ -34,11 +24,18 @@ export function HSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
   return <span css={mq({ width: resolvedSpace })} />;
 }
 
-export function SystemText(props: {
-  children: React.ReactNode;
-  color: keyof AppTheme["colors"];
-}) {
-  const { colors } = useTheme();
-  const color = props.color ? colors[props.color] : "";
-  return <span css={{ color }}>{props.children}</span>;
+/**
+ * Accepts only system-aware props.
+ */
+export function SystemText(
+  props: WithHtmlProps<{
+    children: React.ReactNode;
+    color?: keyof AppTheme["colors"];
+    fontSize?: SystemSpec["textFontSizes"];
+  }>
+) {
+  const theme = useTheme();
+  const color = props.color ? theme.colors[props.color] : "";
+  const fontSize = props.fontSize ? theme.textFontSizes[props.fontSize] : "";
+  return <span css={{ color, fontSize }} {...props} />;
 }

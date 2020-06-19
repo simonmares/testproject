@@ -11,8 +11,86 @@ import { PrimaryButton } from "src/ui-design/PrimaryButton";
 import { VSpace } from "src/ui-styles/system";
 import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
-import { PostDetail } from "src/ui-posts/PostDetail";
 import { PageInlineNotification } from "src/ui-base/PageInlineNotification";
+import { PageTitle } from "src/ui-design/PageTitle";
+import { SystemText } from "src/ui-styles/system";
+import { Heading } from "src/ui-styles/structure";
+import { UnorderedList } from "src/ui-styles/resetHtml";
+import { mq } from "src/utils-styles/responsive";
+import { FormatEmail } from "src/ui-format/strings";
+import { useTheme } from "src/pkg-theme/useTheme";
+
+function PostComment(props: { comment: CommentPayload }) {
+  const { comment } = props;
+  const { colors } = useTheme();
+  return (
+    <div
+      css={{ paddingLeft: 16, borderLeft: `1px solid ${colors.border_100}` }}
+    >
+      <Heading
+        themeColor="text_300"
+        level={3}
+        fontSize="1rem"
+        fontWeight="bold"
+      >
+        {comment.name}
+      </Heading>
+      <div css={{ marginBottom: 2, marginTop: 2 }}>
+        <SystemText color="tone_quiet">from</SystemText>{" "}
+        <FormatEmail value={comment.email} />
+      </div>
+      {comment.body}
+    </div>
+  );
+}
+
+function PostDetail(props: {
+  user: UserPayload;
+  post: PostPayload;
+  comments: CommentPayload[];
+}) {
+  const { post, user, comments } = props;
+  return (
+    <div>
+      <Heading level={1}>{post.title}</Heading>
+      <VSpace size={2} />
+      <div>
+        by <TextLink href={`/user/${user.id}`}>{user.name}</TextLink>
+      </div>
+      <VSpace size={3} />
+
+      <div css={{ padding: 16 }}>
+        <article>{post.body}</article>
+        <VSpace size={3} />
+        <section
+          css={{
+            width: 600,
+            maxWidth: "100%",
+            boxSizing: "border-box",
+          }}
+        >
+          <Heading level={3}>Comments</Heading>
+          <VSpace />
+          {comments.length > 0 ? (
+            <UnorderedList>
+              {comments.map((item) => {
+                return (
+                  <React.Fragment key={item.id}>
+                    <li css={{ marginBottom: 16 }}>
+                      <PostComment comment={item} />
+                    </li>
+                  </React.Fragment>
+                );
+              })}
+            </UnorderedList>
+          ) : (
+            <SystemText color="tone_quiet">There are no comments</SystemText>
+          )}
+        </section>
+      </div>
+    </div>
+  );
+}
 
 /**
  * Page loading logic:

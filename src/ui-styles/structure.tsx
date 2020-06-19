@@ -1,4 +1,7 @@
 import React from "react";
+import { AppThemeProp } from "src/pkg-theme/types";
+import { useTheme } from "src/pkg-theme/useTheme";
+import { mq } from "src/utils-styles/responsive";
 
 const headingResetCss = {
   fontSize: "inherit",
@@ -25,10 +28,10 @@ const levelToHtmlHeadingElements: Record<
   6: "h6" as const,
 };
 
-const levelToFontSize: Record<HeadingLevels, number> = {
-  1: 42,
-  2: 32,
-  3: 22,
+const levelToFontSize: Record<HeadingLevels, number[] | number> = {
+  1: [32, 42],
+  2: [22, 32],
+  3: [16, 22],
   4: 16,
   5: 16,
   6: 16,
@@ -36,14 +39,30 @@ const levelToFontSize: Record<HeadingLevels, number> = {
 
 export function Heading(props: {
   level: HeadingLevels;
-  fontSize?: number;
+  themeColor?: AppThemeProp["color"];
+  fontSize?: React.CSSProperties["fontSize"];
+  fontWeight?: React.CSSProperties["fontWeight"];
   children: React.ReactNode;
 }) {
-  const { level, fontSize, ...passProps } = props;
+  const {
+    level,
+    fontSize,
+    themeColor,
+    fontWeight = "normal",
+    ...passProps
+  } = props;
+
+  const { colors } = useTheme();
+
+  const color = props.themeColor ? colors[props.themeColor] : "";
   const Component = levelToHtmlHeadingElements[level];
-  const overrideCss = { fontSize: fontSize ?? levelToFontSize[level] };
+  const overrideCss = {
+    fontSize: fontSize ?? levelToFontSize[level],
+    fontWeight,
+    color,
+  };
   return (
-    <Component css={{ ...headingResetCss, ...overrideCss }} {...passProps}>
+    <Component css={mq({ ...headingResetCss, ...overrideCss })} {...passProps}>
       {props.children}
     </Component>
   );

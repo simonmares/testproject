@@ -15,6 +15,7 @@ export function PageTitle(props: { children: React.ReactNode }) {
           borderRadius: "4px",
           transform: "skew(-0.01turn, 1deg)",
           boxShadow: "1px 1px 1px",
+          marginBottom: 16,
         }}
       >
         {props.children}

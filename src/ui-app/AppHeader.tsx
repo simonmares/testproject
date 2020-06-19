@@ -11,7 +11,7 @@ export function AppHeader() {
         padding: "8px 32px 8px 32px",
         width: "100%",
         boxSizing: "border-box",
-        background: "#c8f0ff",
+        background: colors.primary_700,
         color: "#4e4e4e",
         boxShadow: "0px 1px 1px #66c3e6",
         display: "flex",
