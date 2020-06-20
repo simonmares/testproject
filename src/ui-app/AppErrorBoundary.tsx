@@ -1,4 +1,5 @@
 import React from "react";
+import { DefaultErrorLayout } from "./DefaultErrorLayout";
 
 type AppErrorBoundaryProps = { children: React.ReactNode };
 type AppErrorBoundaryState = { hasError: boolean };
@@ -17,10 +18,6 @@ export class AppErrorBoundary extends React.Component<
     return { hasError: true };
   }
 
-  onRetry = () => {
-    window.location.reload();
-  };
-
   componentDidCatch(error: Error, info: Object) {
     const extras = { ...info };
     console.error(error, { extras });
@@ -28,12 +25,7 @@ export class AppErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div>
-          <h1>Something went wrong.</h1>
-          <button onClick={this.onRetry}>Retry</button>
-        </div>
-      );
+      return <DefaultErrorLayout />;
     }
     return this.props.children;
   }
