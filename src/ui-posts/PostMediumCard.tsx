@@ -13,7 +13,11 @@ export function PostMediumCard(props: { post: PostPayload }) {
     borderColor: "#a6eaff",
   };
   return (
-    <BlockLink label={`Open post ${post.title}`} href={`/post/${post.id}`}>
+    <BlockLink
+      css={{ height: "inherit" }}
+      label={`Open post ${post.title}`}
+      href={`/post/${post.id}`}
+    >
       <article
         css={{
           padding: "8px 16px",
@@ -26,21 +30,31 @@ export function PostMediumCard(props: { post: PostPayload }) {
           ":hover": activeStyle,
         }}
       >
-        <Heading
-          fontSize={18}
-          fontWeight={600}
-          level={2}
-          css={{ marginBottom: 8 }}
-        >
-          {post.title}
-        </Heading>
-
-        <LinedText lines={2}>{post.body}</LinedText>
-
         <div
-          css={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100%",
+          }}
         >
-          <FakeTextLink variant="primary">Read post</FakeTextLink>
+          <div>
+            <Heading
+              fontSize={18}
+              fontWeight={600}
+              level={2}
+              css={{ marginBottom: 8 }}
+            >
+              {post.title}
+            </Heading>
+            <LinedText lines={2}>{post.body}</LinedText>
+          </div>
+
+          <div
+            css={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}
+          >
+            <FakeTextLink variant="primary">Read post</FakeTextLink>
+          </div>
         </div>
       </article>
     </BlockLink>

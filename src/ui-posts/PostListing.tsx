@@ -19,7 +19,7 @@ export function PostListing(props: {
       {items.map((post) => {
         return (
           <React.Fragment key={post.id}>
-            <li>
+            <li css={{ height: "100%" }}>
               <PostComponent post={post} />
             </li>
           </React.Fragment>
