@@ -2,7 +2,7 @@ import React from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import { AppErrorBoundary } from "src/ui-app/AppErrorBoundary";
-import { PageLoader } from "src/ui-design/PageLoader";
+import { AppLayout } from "./AppLayout";
 
 function AppDocument(props: { children: React.ReactNode }) {
   return (
@@ -32,26 +32,11 @@ function AppDocument(props: { children: React.ReactNode }) {
   );
 }
 
-function ClientOnly(props: { children: React.ReactNode }) {
-  const [didMount, setDidMount] = React.useState(false);
-  React.useEffect(() => {
-    setDidMount(true);
-  }, []);
-
-  if (!didMount) {
-    // do not render anything on initial
-    return null;
-  }
-  return (
-    <React.Suspense fallback={<PageLoader />}>{props.children}</React.Suspense>
-  );
-}
-
 export function AppRoot(props: { children: React.ReactNode }) {
   return (
     <AppDocument>
       <AppErrorBoundary>
-        <ClientOnly>{props.children}</ClientOnly>
+        <AppLayout>{props.children}</AppLayout>
       </AppErrorBoundary>
     </AppDocument>
   );
