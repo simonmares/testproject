@@ -7,7 +7,7 @@ import { useFetchList } from "src/pkg-resources/useFetchList";
 import { PostPayload } from "src/domain-posts/types";
 import { PostListing } from "src/ui-posts/PostListing";
 import { VSpace } from "src/ui-styles/system";
-import { PostSmallCard } from "src/ui-posts/PostSmallCard";
+import { PostMediumCard } from "src/ui-posts/PostMediumCard";
 
 export function HomePage(props: {}) {
   const postsResource = useFetchList<PostPayload, unknown>(
@@ -20,7 +20,7 @@ export function HomePage(props: {}) {
 
       <VSpace size={[1, 2, 3]} />
 
-      <PostListing items={posts} PostComponent={PostSmallCard} />
+      <PostListing items={posts} PostComponent={PostMediumCard} />
 
       <VSpace size={3} />
 
