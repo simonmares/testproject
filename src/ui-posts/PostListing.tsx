@@ -9,7 +9,7 @@ export function PostListing(props: {
   items: PostPayload[];
   PostComponent: React.ComponentType<{ post: PostPayload }>;
 }) {
-  const { items,PostComponent } = props;
+  const { items, PostComponent } = props;
   return (
     <UnorderedList
       css={mq({

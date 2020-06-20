@@ -1,9 +1,10 @@
 import React from "react";
 import Link, { LinkProps } from "next/link";
 import { useTheme } from "src/pkg-theme/useTheme";
+import { HtmlTagComponentProps } from "src/utils-react/types";
 
 type BaseLinkProps = { href: LinkProps["href"]; children: React.ReactNode };
-type TextLinkProps = { variant?: "normal" | "quiet" };
+type TextLinkExtraProps = { variant?: "normal" | "quiet" | "primary" };
 
 function BaseLink(props: BaseLinkProps) {
   const { href, ...aTagProps } = props;
@@ -14,7 +15,18 @@ function BaseLink(props: BaseLinkProps) {
   );
 }
 
-function useTextLinkStyle(info: TextLinkProps) {
+/**
+ * Forces type-safety for enums (string unions).
+ * - each enum value must have a matching value
+ */
+function matchEach<TEnum extends string, TReturns>(
+  value: TEnum,
+  mapping: Record<TEnum, TReturns>
+) {
+  return mapping[value];
+}
+
+function useTextLinkStyle(info: TextLinkExtraProps) {
   const { variant = "normal" } = info;
   const { colors } = useTheme();
   const activeStyle = {
@@ -23,9 +35,11 @@ function useTextLinkStyle(info: TextLinkProps) {
   };
   return {
     textDecoration: "none",
-    borderBottom: `2px solid ${
-      variant === "normal" ? colors.secondary_300 : colors.greyscale_300
-    }`,
+    borderBottom: `2px solid ${matchEach(variant, {
+      quiet: colors.greyscale_300,
+      primary: colors.primary_900,
+      normal: colors.secondary_300,
+    })}`,
     color: "inherit",
     // transition: "color,border 200ms ease-in",
     "&:focus": activeStyle,
@@ -33,9 +47,16 @@ function useTextLinkStyle(info: TextLinkProps) {
   };
 }
 
-export function TextLink(props: BaseLinkProps & TextLinkProps) {
+export function TextLink(props: BaseLinkProps & TextLinkExtraProps) {
   const textLinkStyle = useTextLinkStyle(props);
   return <BaseLink css={textLinkStyle} {...props} />;
+}
+
+export function FakeTextLink(
+  props: HtmlTagComponentProps<"span"> & TextLinkExtraProps
+) {
+  const textLinkStyle = useTextLinkStyle(props);
+  return <span css={textLinkStyle} {...props} />;
 }
 
 export function BlockLink(props: BaseLinkProps & { label: string }) {
@@ -55,7 +76,7 @@ export function BlockLink(props: BaseLinkProps & { label: string }) {
 }
 
 export function ExternalTextLink(
-  props: React.ComponentProps<"a"> & TextLinkProps
+  props: React.ComponentProps<"a"> & TextLinkExtraProps
 ) {
   const textLinkStyle = useTextLinkStyle(props);
   return (

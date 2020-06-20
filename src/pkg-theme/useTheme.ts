@@ -10,6 +10,7 @@ const theme = {
   colors: {
     // primary
     primary_100: "#f8fdff",
+    primary_300: "#f2fcff",
     primary_500: "#ddf6ff",
     primary_700: "#c8f0ff",
     primary_900: "#00a3e0",
@@ -24,6 +25,7 @@ const theme = {
     text_300: "#6d6868",
     text_700: "#585858",
     border_100: "#f0f0f0",
+    border_300: "#e9e9e9",
     // greyscale background
     greyscale_100: "#f9f9f9",
     greyscale_300: "#dedede",

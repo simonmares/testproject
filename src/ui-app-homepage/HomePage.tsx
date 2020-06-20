@@ -23,10 +23,10 @@ export function HomePage(props: {}) {
 
       <PostListing items={posts} PostComponent={PostSmallCard} />
 
-      <VSpace size={[1, 2, 3]} />
+      <VSpace size={3} />
 
       <div css={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-        <TextLink css={{ fontSize: 28 }} href="/post">
+        <TextLink variant="primary" css={{ fontSize: 28 }} href="/post">
           More posts...
         </TextLink>
       </div>

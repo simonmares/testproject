@@ -27,8 +27,8 @@ export function PostListPage(props: InitialProps) {
   }
   return (
     <DefaultLayout>
-      <PageHeading>Posts</PageHeading>
-      <PageHeadTitle title={"Posts"} />
+      <PageHeading>All posts</PageHeading>
+      <PageHeadTitle title={"All posts"} />
       <VSpace size={[1, 2, 3]} />
       <PostListing items={postsResource.data} PostComponent={PostMediumCard} />
     </DefaultLayout>

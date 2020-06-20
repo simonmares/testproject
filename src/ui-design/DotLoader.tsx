@@ -59,7 +59,7 @@ export function DotAnimation(props: { color: string }) {
 }
 
 export function DotLoader(props: WithHtmlProps<{ message?: string }>) {
-  const { message = "Just a second", ...passProps } = props;
+  const { message = "Loading", ...passProps } = props;
 
   const [delay, setDelay] = useState<"initial" | "short" | "long">("initial");
   const theme = useTheme();
