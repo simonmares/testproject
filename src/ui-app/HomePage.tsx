@@ -9,14 +9,21 @@ import { PostListing } from "src/ui-posts/PostListing";
 import { VSpace } from "src/ui-styles/system";
 import { PostMediumCard } from "src/ui-posts/PostMediumCard";
 import { postsLinks } from "src/ui-app-posts";
+import { PreloadPageData } from "src/ui-resources/PreloadPageData";
+
+const pageData = {
+  posts: { url: "https://jsonplaceholder.typicode.com/posts" },
+};
 
 export function HomePage(props: {}) {
   const postsResource = useListResource<PostPayload, unknown>(
-    "https://jsonplaceholder.typicode.com/posts"
+    pageData.posts.url
   );
   const posts = (postsResource.data || []).slice(0, 10);
   return (
     <DefaultLayout>
+      <PreloadPageData pageData={pageData} />
+
       <PageHeading>Latest 10 posts</PageHeading>
 
       <VSpace size={[1, 2, 3]} />
