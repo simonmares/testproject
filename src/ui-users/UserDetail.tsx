@@ -133,9 +133,6 @@ export function UserDetail(props: {
     userPostsResource.lazyLoad();
   }, []);
 
-  console.log("userPostsResource", userPostsResource);
-
-  const userPosts = userPostsResource.resource.data || [];
   return (
     <div>
       <div>
@@ -148,7 +145,7 @@ export function UserDetail(props: {
         >
           <Heading css={{ display: "flex", alignItems: "center" }} level={1}>
             <UserIcon
-              size={18}
+              size={22}
               color={colors.tone_quiet}
               css={{ marginRight: 8 }}
             />{" "}
@@ -182,8 +179,12 @@ export function UserDetail(props: {
         })}
       >
         <InfoSection user={user} />
-        <LazyResourceContent resource={userPostsResource}>
-          <LatestPostsSection userPosts={userPosts} />
+        <LazyResourceContent
+          message="Loading user's posts"
+          loadMode="manual"
+          resource={userPostsResource}
+        >
+          {(data) => <LatestPostsSection userPosts={data || []} />}
         </LazyResourceContent>
       </div>
     </div>

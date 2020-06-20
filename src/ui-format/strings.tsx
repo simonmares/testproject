@@ -6,7 +6,8 @@ import { LinkIcon } from "src/ui-icons/LinkIcon";
 export function FormatEmail(props: { value: string }) {
   return (
     <ExternalTextLink variant="quiet" href={`mailto:${props.value}`}>
-      {props.value}
+      {props.value} &nbsp;
+      <LinkIcon />
     </ExternalTextLink>
   );
 }
@@ -14,7 +15,8 @@ export function FormatEmail(props: { value: string }) {
 export function FormatPhone(props: { value: string }) {
   return (
     <ExternalTextLink variant="quiet" href={`tel:${props.value}`}>
-      {props.value}
+      {props.value} &nbsp;
+      <LinkIcon />
     </ExternalTextLink>
   );
 }

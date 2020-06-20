@@ -7,7 +7,7 @@ export type FetchResource<TModel, TError = unknown> = responseInterface<
   TError
 >;
 
-type LazyResourceState = "initial" | "loaded";
+type LazyResourceState = "initial" | "loading" | "loaded";
 
 export type LazyResource<TModel, TError = unknown> = {
   lazyLoad: () => void;

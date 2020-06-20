@@ -16,7 +16,15 @@ export function useLazyResource<TModel, TError = unknown>(
     lazyLoad: () => {
       setLazyFetchActive(true);
     },
-    lazyState: lazyFetchActive ? "loaded" : "initial",
+    lazyState: (() => {
+      if (!lazyFetchActive) {
+        return "initial";
+      }
+      if (resource.isValidating) {
+        return "loading";
+      }
+      return "loaded";
+    })(),
     resource,
   };
 }

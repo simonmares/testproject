@@ -1,14 +1,27 @@
 import React from "react";
 
 import { LazyResource } from "src/pkg-resources/types";
+import { InlineLoader } from "src/ui-design/InlineLoader";
 
+/**
+ * Props:
+ *
+ * -- loadMode: how the resource is loaded (manual=outside of this component)
+ */
 export function LazyResourceContent<T>(props: {
-  children: React.ReactElement;
+  children: (
+    data: LazyResource<T>["resource"]["data"],
+    resource: LazyResource<T>
+  ) => React.ReactElement;
+  message?: string;
+  loadMode: "manual";
   resource: LazyResource<T>;
 }) {
-  return props.resource.lazyState === "loaded" ? (
-    props.children
+  const lazyResource = props.resource;
+  const { resource } = lazyResource;
+  return lazyResource.lazyState === "loaded" ? (
+    props.children(resource.data, lazyResource)
   ) : (
-    <div>....</div>
+    <InlineLoader message={props.message} />
   );
 }
