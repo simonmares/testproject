@@ -7,7 +7,6 @@ import { useRouter } from "next/dist/client/router";
 import { DefaultErrorLayout } from "src/ui-app/DefaultErrorLayout";
 import { NotFoundLayout } from "src/ui-app/NotFoundLayout";
 import { useFetchList } from "src/pkg-resources/useFetchList";
-import { PrimaryButton } from "src/ui-design/PrimaryButton";
 import { VSpace } from "src/ui-styles/system";
 import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
@@ -122,6 +121,7 @@ export function PostPage(props: {}) {
   const user = userResource.data;
   const comments = commentsResource.data;
   const commentsFetchFailed = !commentsResource.data;
+
   return (
     <DefaultLayout>
       <PageHeadTitle title={post.title} />
@@ -131,14 +131,13 @@ export function PostPage(props: {}) {
           <PageInlineNotification tone="warning">
             <div>
               Comments failed to fech{" "}
-              <PrimaryButton
+              <button
                 onClick={() => {
                   commentsResource.revalidate();
                 }}
-                size="small"
               >
                 Retry
-              </PrimaryButton>
+              </button>
             </div>
           </PageInlineNotification>
         </PageInlineNotification.Layout>
