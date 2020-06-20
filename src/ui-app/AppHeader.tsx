@@ -2,6 +2,7 @@ import React from "react";
 import { Heading } from "src/ui-styles/structure";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { BlockLink } from "src/ui-base/links";
+import { globalLinks } from ".";
 
 export function AppHeader() {
   const { colors } = useTheme();
@@ -18,7 +19,7 @@ export function AppHeader() {
         justifyContent: "center",
       }}
     >
-      <BlockLink label="Go to App homepage" href="/">
+      <BlockLink label="Go to App homepage" link={globalLinks.homepage}>
         <Heading
           fontSize={32}
           level={1}

@@ -4,6 +4,7 @@ import { BlockLink, FakeTextLink } from "src/ui-base/links";
 import { Heading } from "src/ui-styles/structure";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { LinedText } from "src/ui-design/LinedText";
+import { postsLinks } from "src/ui-app-posts";
 
 export function PostMediumCard(props: { post: PostPayload }) {
   const { post } = props;
@@ -16,7 +17,7 @@ export function PostMediumCard(props: { post: PostPayload }) {
     <BlockLink
       css={{ height: "inherit" }}
       label={`Open post ${post.title}`}
-      href={`/post/${post.id}`}
+      link={postsLinks.postDetail(post.id)}
     >
       <article
         css={{

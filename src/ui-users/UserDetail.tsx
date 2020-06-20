@@ -14,6 +14,7 @@ import { PostPayload } from "src/domain-posts/types";
 import { TextEnumeration } from "src/ui-design/TextEnumeration";
 import { TextLink } from "src/ui-base/links";
 import { LazyResourceContent } from "src/ui-resources/LazyResourceContent";
+import { postsLinks } from "src/ui-app-posts";
 
 function FormatAddress(props: { address: UserPayload["address"] }) {
   const { address } = props;
@@ -38,7 +39,9 @@ function LatestPostsSection(props: { userPosts: PostPayload[] }) {
           return (
             <React.Fragment key={item.id}>
               <li css={{ marginBottom: 8 }}>
-                <TextLink href={`/post/${item.id}`}>{item.title}</TextLink>
+                <TextLink link={postsLinks.postDetail(item.id)}>
+                  {item.title}
+                </TextLink>
               </li>
             </React.Fragment>
           );

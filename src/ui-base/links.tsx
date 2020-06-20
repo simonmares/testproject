@@ -1,15 +1,18 @@
 import React from "react";
-import Link, { LinkProps } from "next/link";
+import Link from "next/link";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { HtmlTagComponentProps } from "src/utils-react/types";
 
-type BaseLinkProps = { href: LinkProps["href"]; children: React.ReactNode };
+type BaseLinkProps = {
+  link: { href: string; as: string };
+  children: React.ReactNode;
+};
 type TextLinkExtraProps = { variant?: "normal" | "quiet" | "primary" };
 
 function BaseLink(props: BaseLinkProps) {
-  const { href, ...aTagProps } = props;
+  const { link, ...aTagProps } = props;
   return (
-    <Link href={href}>
+    <Link href={link.href} as={link.as}>
       <a {...aTagProps}>{props.children}</a>
     </Link>
   );

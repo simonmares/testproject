@@ -17,6 +17,7 @@ import { UnorderedList } from "src/ui-styles/resetHtml";
 import { FormatEmail } from "src/ui-format/strings";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { PageHeadTitle } from "src/ui-app/appHead";
+import { usersLinks } from "src/ui-app-users";
 
 function PostComment(props: { comment: CommentPayload }) {
   const { comment } = props;
@@ -53,7 +54,8 @@ function PostDetail(props: {
       <Heading level={1}>{post.title}</Heading>
       <VSpace size={2} />
       <div>
-        by <TextLink href={`/user/${user.id}`}>{user.name}</TextLink>
+        by{" "}
+        <TextLink link={usersLinks.userDetail(user.id)}>{user.name}</TextLink>
       </div>
       <VSpace size={3} />
 
