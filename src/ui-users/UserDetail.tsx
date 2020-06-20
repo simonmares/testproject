@@ -38,9 +38,7 @@ function LatestPostsSection(props: { userPosts: PostPayload[] }) {
           return (
             <React.Fragment key={item.id}>
               <li css={{ marginBottom: 8 }}>
-                <TextLink variant="quiet" href={`/post/${item.id}`}>
-                  {item.title}
-                </TextLink>
+                <TextLink href={`/post/${item.id}`}>{item.title}</TextLink>
               </li>
             </React.Fragment>
           );
@@ -180,7 +178,6 @@ export function UserDetail(props: {
           alignItems: "start",
           gridGap: [16, 32],
           gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"],
-          gridTemplateRows: "auto",
         })}
       >
         <InfoSection user={user} />
