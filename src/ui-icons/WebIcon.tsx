@@ -1,8 +1,8 @@
 import React from "react";
 import { createIcon } from "./createIcon";
 
-export const UserIcon = createIcon(
-  { name: "UserIcon" },
+export const WebIcon = createIcon(
+  { name: "WebIcon" },
   <React.Fragment>
     <circle cx="12" cy="12" r="10" />
     <line x1="2" y1="12" x2="22" y2="12" />

@@ -11,6 +11,19 @@ import { WithHtmlProps } from "src/app-types/components";
 import { MailIcon } from "src/ui-icons/MailIcon";
 import { PhoneIcon } from "src/ui-icons/PhoneIcon";
 import { LinkIcon } from "src/ui-icons/LinkIcon";
+import { WebIcon } from "src/ui-icons/WebIcon";
+
+function FormatAddress(props: { address: UserPayload["address"] }) {
+  const { address } = props;
+  return (
+    <div>
+      {address.suite}, {address.street}
+      <div>
+        {address.city} {address.zipcode}
+      </div>
+    </div>
+  );
+}
 
 function InfoSection(props: { user: UserPayload }) {
   const { user } = props;
@@ -35,6 +48,22 @@ function InfoSection(props: { user: UserPayload }) {
           borderRadius: "0 0 8px 8px",
         }}
       >
+        <Heading
+          fontWeight={600}
+          themeColor="text_700"
+          fontSize={20}
+          level={2}
+          css={{ textAlign: "center" }}
+        >
+          Contact
+        </Heading>
+
+        <VSpace size={2} />
+
+        <FormatAddress address={user.address} />
+
+        <VSpace size={2} />
+
         <div
           css={{
             display: "grid",
@@ -51,7 +80,7 @@ function InfoSection(props: { user: UserPayload }) {
           <div>
             <FormatPhone value={user.phone} />
           </div>
-          <LinkIcon color={colors.primary_900} size={24} />
+          <WebIcon color={colors.primary_900} size={24} />
           <div>
             <FormatWebsite value={user.website} />
           </div>
@@ -71,24 +100,42 @@ export function UserDetail(props: { user: UserPayload }) {
 
   return (
     <div>
-      <Heading
-        level={1}
-        css={mq({
-          display: "flex",
-          alignItems: "center",
-          flexDirection: ["column", "row"],
-        })}
-      >
-        <UserIcon color={colors.tone_quiet} css={{ marginRight: 8 }} />
-        {user.name}
-        <SystemText fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
-          &#64;{user.username}
-        </SystemText>
-      </Heading>
+      <div>
+        <Heading
+          level={1}
+          css={mq({
+            display: "flex",
+            alignItems: "center",
+            flexDirection: ["column", "row"],
+          })}
+        >
+          <UserIcon color={colors.tone_quiet} css={{ marginRight: 8 }} />
+          {user.name}
+          <SystemText fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
+            &#64;{user.username}
+          </SystemText>
+        </Heading>
+
+        <VSpace />
+
+        <section>
+          Works at{" "}
+          <SystemText css={{ fontWeight: 600 }} color="text_700" as="strong">
+            {user.company.name}
+          </SystemText>{" "}
+          ({user.company.bs}).
+        </section>
+      </div>
 
       <VSpace size={3} />
 
-      <div css={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+      <div
+        css={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
         <InfoSection user={user} />
       </div>
     </div>

@@ -3,6 +3,7 @@ import { ResponsiveStyleProp, mq } from "src/utils-styles/responsive";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { AppTheme, SystemSpec } from "src/pkg-theme/types";
 import { WithHtmlProps } from "src/app-types/components";
+import { HtmlTagComponents } from "src/utils-react/types";
 
 type SpacingSize = SystemSpec["space"];
 
@@ -30,12 +31,14 @@ export function HSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
 export function SystemText(
   props: WithHtmlProps<{
     children: React.ReactNode;
+    as?: HtmlTagComponents;
     color?: keyof AppTheme["colors"];
     fontSize?: SystemSpec["textFontSizes"];
   }>
 ) {
+  const { as: Component = "span" } = props;
   const theme = useTheme();
   const color = props.color ? theme.colors[props.color] : "";
   const fontSize = props.fontSize ? theme.textFontSizes[props.fontSize] : "";
-  return <span css={{ color, fontSize }} {...props} />;
+  return <Component css={{ color, fontSize }} {...props} />;
 }

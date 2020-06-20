@@ -22,6 +22,7 @@ const theme = {
     tone_highlight_300: "#ffc6e2",
     // text
     text_300: "#6d6868",
+    text_700: "#585858",
     border_100: "#f0f0f0",
     // greyscale background
     greyscale_100: "#f9f9f9",
