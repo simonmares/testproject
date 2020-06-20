@@ -11,13 +11,19 @@ import { UserIcon } from "src/ui-icons/UserIcon";
 import { HSpace, VSpace } from "src/ui-styles/system";
 import { Heading } from "src/ui-styles/structure";
 import { useTheme } from "src/pkg-theme/useTheme";
+import { useLazyResource } from "src/pkg-resources/useLazyResource";
+import { CommentPayload, PostPayload } from "src/domain-posts/types";
 
 export function UserPage(props: {}) {
   const router = useRouter();
   const { colors } = useTheme();
   const userId = router.query.id;
-  const userResource = useFetchResource<UserPayload, unknown>(
+  const userResource = useFetchResource<UserPayload>(
     `https://jsonplaceholder.typicode.com/users/${userId}/`
+  );
+
+  const userPostsResource = useLazyResource<PostPayload[]>(
+    `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
   );
 
   if (!userResource.data) {
@@ -27,7 +33,7 @@ export function UserPage(props: {}) {
   const user = userResource.data;
   return (
     <DefaultLayout>
-      <UserDetail user={user} />
+      <UserDetail user={user} userPostsResource={userPostsResource} />
     </DefaultLayout>
   );
 }

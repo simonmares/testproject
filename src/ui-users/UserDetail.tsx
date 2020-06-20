@@ -12,6 +12,11 @@ import { MailIcon } from "src/ui-icons/MailIcon";
 import { PhoneIcon } from "src/ui-icons/PhoneIcon";
 import { LinkIcon } from "src/ui-icons/LinkIcon";
 import { WebIcon } from "src/ui-icons/WebIcon";
+import { LazyResource } from "src/pkg-resources/types";
+import { PostPayload } from "src/domain-posts/types";
+import { TextEnumeration } from "src/ui-design/TextEnumeration";
+import { TextLink } from "src/ui-base/links";
+import { LazyResourceContent } from "src/ui-resources/LazyResourceContent";
 
 function FormatAddress(props: { address: UserPayload["address"] }) {
   const { address } = props;
@@ -25,28 +30,51 @@ function FormatAddress(props: { address: UserPayload["address"] }) {
   );
 }
 
+function LatestPostsSection(props: { userPosts: PostPayload[] }) {
+  const { userPosts } = props;
+  const sliceCount = Math.min(userPosts.length, 5);
+  return (
+    <section>
+      <Heading level={2}>Latest {sliceCount} posts</Heading>
+      <TextEnumeration>
+        {userPosts.slice(0, sliceCount).map((item) => {
+          return (
+            <React.Fragment key={item.id}>
+              <li css={{ marginBottom: 8 }}>
+                <TextLink variant="quiet" href={`/post/${item.id}`}>
+                  {item.title}
+                </TextLink>
+              </li>
+            </React.Fragment>
+          );
+        })}
+      </TextEnumeration>
+    </section>
+  );
+}
+
 function InfoSection(props: { user: UserPayload }) {
   const { user } = props;
   const { colors } = useTheme();
   return (
     <section
-      css={{
+      css={mq({
         borderTop: `8px solid ${colors.primary_700}`,
         backgroundColor: "#eaeaea2b",
         boxShadow: "1px 1px 1px #d8d8d8",
         borderRadius: "8px",
-        width: 340,
+        width: ["100%", "100%", 340],
         maxWidth: "100%",
         boxSizing: "border-box",
-      }}
+      })}
     >
       <div
-        css={{
-          padding: "16px 32px",
+        css={mq({
+          padding: ["8px", "16px 32px"],
           background: colors.greyscale_100,
           boxShadow: "0px -1px 1px #66c3e6",
           borderRadius: "0 0 8px 8px",
-        }}
+        })}
       >
         <Heading
           fontWeight={600}
@@ -94,27 +122,42 @@ function InfoBlockListItem(props: { children: React.ReactNode }) {
   return <li {...props} />;
 }
 
-export function UserDetail(props: { user: UserPayload }) {
-  const { user } = props;
+export function UserDetail(props: {
+  user: UserPayload;
+  userPostsResource: LazyResource<PostPayload[]>;
+}) {
+  const { user, userPostsResource } = props;
   const { colors, system } = useTheme();
 
+  React.useEffect(() => {
+    userPostsResource.lazyLoad();
+  }, []);
+
+  console.log("userPostsResource", userPostsResource);
+
+  const userPosts = userPostsResource.resource.data || [];
   return (
     <div>
       <div>
-        <Heading
-          level={1}
+        <section
           css={mq({
             display: "flex",
             alignItems: "center",
-            flexDirection: ["column", "row"],
+            flexDirection: ["column", "column", "row"],
           })}
         >
-          <UserIcon color={colors.tone_quiet} css={{ marginRight: 8 }} />
-          {user.name}
+          <Heading css={{ display: "flex", alignItems: "center" }} level={1}>
+            <UserIcon
+              size={18}
+              color={colors.tone_quiet}
+              css={{ marginRight: 8 }}
+            />{" "}
+            {user.name}
+          </Heading>
           <SystemText fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
             &#64;{user.username}
           </SystemText>
-        </Heading>
+        </section>
 
         <VSpace />
 
@@ -130,13 +173,18 @@ export function UserDetail(props: { user: UserPayload }) {
       <VSpace size={3} />
 
       <div
-        css={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
+        css={mq({
+          display: "grid",
+          alignItems: "start",
+          gridGap: [16, 32],
+          gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"],
+          gridTemplateRows: "auto",
+        })}
       >
         <InfoSection user={user} />
+        <LazyResourceContent resource={userPostsResource}>
+          <LatestPostsSection userPosts={userPosts} />
+        </LazyResourceContent>
       </div>
     </div>
   );

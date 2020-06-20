@@ -84,7 +84,9 @@ function PostDetail(props: {
               })}
             </UnorderedList>
           ) : (
-            <SystemText color="tone_quiet">There are no comments</SystemText>
+            <SystemText color="tone_quiet">
+              There are no comments
+            </SystemText>
           )}
         </section>
       </div>
