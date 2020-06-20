@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "pre-commit": "whys-scripts format --staged --add",
+    "pre-push": "whys-scripts lint --changed"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -21,6 +23,17 @@
     "@types/node": "^14.0.13",
     "@types/react": "^16.9.36",
     "@types/react-dom": "^16.9.8",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "whys-scripts": "^3.3.0"
+  },
+  "whys-scripts": {
+    "src": [
+      "src/**/*.{ts,tsx}",
+      "pages/**/*.{ts,tsx}"
+    ],
+    "projectType": "react-application",
+    "enable": {
+      "typescript": true
+    }
   }
 }
