@@ -9,6 +9,10 @@ function AppDocument(props: { children: React.ReactNode }) {
     <React.Fragment>
       <Head>
         <title>App</title>
+        <meta
+          name="description"
+          content="This is a test project using API https://jsonplaceholder.typicode.com/."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
