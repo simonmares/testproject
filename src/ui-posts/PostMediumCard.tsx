@@ -10,7 +10,7 @@ export function PostMediumCard(props: { post: PostPayload }) {
   const { colors } = useTheme();
 
   const activeStyle = {
-    borderColor: '#a6eaff',
+    borderColor: "#a6eaff",
   };
   return (
     <BlockLink label={`Open post ${post.title}`} href={`/post/${post.id}`}>

@@ -9,7 +9,9 @@ export function useLazyResource<TModel, TError = unknown>(
 
   const resource = useFetchResource<TModel, TError>(
     lazyFetchActive ? key : null,
-    { suspense: false }
+    {
+      suspense: false,
+    }
   );
 
   return {

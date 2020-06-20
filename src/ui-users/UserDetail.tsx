@@ -151,7 +151,11 @@ export function UserDetail(props: {
             />{" "}
             {user.name}
           </Heading>
-          <SystemInline fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
+          <SystemInline
+            fontSize={1}
+            css={{ marginLeft: 16 }}
+            color="tone_quiet"
+          >
             &#64;{user.username}
           </SystemInline>
         </section>
