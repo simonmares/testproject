@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, { ConfigInterface } from "swr";
 import { FetchResourceKey } from "./types";
 
 function createFetcher() {
@@ -9,9 +9,16 @@ function createFetcher() {
 
 const fetcher = createFetcher();
 
+type UseFetchResourceOptions = {
+  suspense: ConfigInterface["suspense"];
+};
+
 /**
  * A base hook to fetch resources.
  */
-export function useFetchResource<TData, TError>(key: FetchResourceKey) {
-  return useSWR<TData, TError>(key, fetcher, { suspense: true });
+export function useFetchResource<TData, TError = unknown>(
+  key: FetchResourceKey,
+  options?: UseFetchResourceOptions
+) {
+  return useSWR<TData, TError>(key, fetcher, { suspense: true, ...options });
 }
