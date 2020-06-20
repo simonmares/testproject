@@ -1,11 +1,11 @@
 import React from "react";
 
 import { ExternalTextLink } from "src/ui-base/links";
-import { ExternalLinkIcon } from "src/ui-icons/ExternalLinkIcon";
+import { LinkIcon } from "src/ui-icons/LinkIcon";
 
 export function FormatEmail(props: { value: string }) {
   return (
-    <ExternalTextLink href={`mailto:${props.value}`}>
+    <ExternalTextLink variant="quiet" href={`mailto:${props.value}`}>
       {props.value}
     </ExternalTextLink>
   );
@@ -13,7 +13,7 @@ export function FormatEmail(props: { value: string }) {
 
 export function FormatPhone(props: { value: string }) {
   return (
-    <ExternalTextLink href={`tel:${props.value}`}>
+    <ExternalTextLink variant="quiet" href={`tel:${props.value}`}>
       {props.value}
     </ExternalTextLink>
   );
@@ -25,11 +25,12 @@ export function FormatWebsite(props: { value: string }) {
   const href = value.includes("http") ? value : `http://${value}`;
   return (
     <ExternalTextLink
+      variant="quiet"
       href={href}
       css={{ display: "inline-flex", alignItems: "center" }}
     >
       {props.value} &nbsp;
-      <ExternalLinkIcon />
+      <LinkIcon />
     </ExternalTextLink>
   );
 }

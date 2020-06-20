@@ -14,6 +14,7 @@ const theme = {
     primary_700: "#c8f0ff",
     primary_900: "#00a3e0",
     // secondary
+    secondary_300: "#ffbdce",
     secondary_900: "#EF476F",
     // tones
     tone_quiet: "#737373",
