@@ -11,7 +11,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Next.js Documentation](https://nextjs.org/docs) Next.js features and API.
+- [https://github.com/vercel/swr](https://github.com/vercel/swr) useSWR features and API.
 
 ## Getting Started
 
