@@ -2,7 +2,7 @@ import React from "react";
 
 import { DefaultLayout } from "../ui-app/DefaultLayout";
 import { NotFoundLayout } from "../ui-app/NotFoundLayout";
-import { useFetchList } from "../pkg-resources/useFetchList";
+import { useListResource } from "../pkg-resources/useListResource";
 import { PostPayload } from "../domain-posts/types";
 import { DefaultErrorLayout } from "src/ui-app/DefaultErrorLayout";
 import { PostListing } from "src/ui-posts/PostListing";
@@ -14,7 +14,7 @@ import { PageHeadTitle } from "src/ui-app/appHead";
 type InitialProps = {};
 
 export function PostListPage(props: InitialProps) {
-  const postsResource = useFetchList<PostPayload, unknown>(
+  const postsResource = useListResource<PostPayload, unknown>(
     "https://jsonplaceholder.typicode.com/posts"
   );
   if (postsResource.error) {

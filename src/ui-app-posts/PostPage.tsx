@@ -1,12 +1,12 @@
 import React from "react";
 
 import { DefaultLayout } from "../ui-app/DefaultLayout";
-import { useFetchResource } from "src/pkg-resources/useFetchResource";
+import { useResource } from "src/pkg-resources/useResource";
 import { PostPayload, CommentPayload } from "src/domain-posts/types";
 import { useRouter } from "next/dist/client/router";
 import { DefaultErrorLayout } from "src/ui-app/DefaultErrorLayout";
 import { NotFoundLayout } from "src/ui-app/NotFoundLayout";
-import { useFetchList } from "src/pkg-resources/useFetchList";
+import { useListResource } from "src/pkg-resources/useListResource";
 import { VSpace } from "src/ui-styles/system";
 import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
@@ -100,15 +100,15 @@ export function PostPage(props: {}) {
   const router = useRouter();
   const postId = router.query.id;
 
-  const postResource = useFetchResource<PostPayload, unknown>(
+  const postResource = useResource<PostPayload, unknown>(
     `https://jsonplaceholder.typicode.com/posts/${postId}`
   );
-  const commentsResource = useFetchList<CommentPayload, unknown>(
+  const commentsResource = useListResource<CommentPayload, unknown>(
     `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
   );
 
   const userId = postResource.data?.userId;
-  const userResource = useFetchResource<UserPayload, unknown>(() =>
+  const userResource = useResource<UserPayload, unknown>(() =>
     userId ? `https://jsonplaceholder.typicode.com/users/${userId}` : null
   );
 

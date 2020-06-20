@@ -1,4 +1,4 @@
-import { useFetchResource } from "./useFetchResource";
+import { useResource } from "./useResource";
 import { useState } from "react";
 import { FetchResourceKey, LazyResource } from "./types";
 
@@ -7,12 +7,9 @@ export function useLazyResource<TModel, TError = unknown>(
 ): LazyResource<TModel, TError> {
   const [lazyFetchActive, setLazyFetchActive] = useState(false);
 
-  const resource = useFetchResource<TModel, TError>(
-    lazyFetchActive ? key : null,
-    {
-      suspense: false,
-    }
-  );
+  const resource = useResource<TModel, TError>(lazyFetchActive ? key : null, {
+    suspense: false,
+  });
 
   return {
     lazyLoad: () => {

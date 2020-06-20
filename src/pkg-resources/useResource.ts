@@ -9,16 +9,16 @@ function createFetcher() {
 
 const fetcher = createFetcher();
 
-type UseFetchResourceOptions = {
+type useResourceOptions = {
   suspense: ConfigInterface["suspense"];
 };
 
 /**
  * A base hook to fetch resources.
  */
-export function useFetchResource<TData, TError = unknown>(
+export function useResource<TData, TError = unknown>(
   key: FetchResourceKey,
-  options?: UseFetchResourceOptions
+  options?: useResourceOptions
 ) {
   return useSWR<TData, TError>(key, fetcher, { suspense: true, ...options });
 }

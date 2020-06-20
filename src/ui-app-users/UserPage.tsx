@@ -1,7 +1,7 @@
 import React from "react";
 
 import { DefaultLayout } from "../ui-app/DefaultLayout";
-import { useFetchResource } from "src/pkg-resources/useFetchResource";
+import { useResource } from "src/pkg-resources/useResource";
 import { UserPayload } from "src/domain-users/types";
 import { NotFoundLayout } from "src/ui-app/NotFoundLayout";
 import { useRouter } from "next/dist/client/router";
@@ -13,7 +13,7 @@ import { PageHeadTitle } from "src/ui-app/appHead";
 export function UserPage(props: {}) {
   const router = useRouter();
   const userId = router.query.id;
-  const userResource = useFetchResource<UserPayload>(
+  const userResource = useResource<UserPayload>(
     `https://jsonplaceholder.typicode.com/users/${userId}/`
   );
 
