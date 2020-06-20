@@ -13,7 +13,7 @@ import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
 import { PageInlineNotification } from "src/ui-base/PageInlineNotification";
 import { PageHeading } from "src/ui-design/PageHeading";
-import { SystemText } from "src/ui-styles/system";
+import { SystemInline } from "src/ui-styles/system";
 import { Heading } from "src/ui-styles/structure";
 import { UnorderedList } from "src/ui-styles/resetHtml";
 import { mq } from "src/utils-styles/responsive";
@@ -37,7 +37,7 @@ function PostComment(props: { comment: CommentPayload }) {
         {comment.name}
       </Heading>
       <div css={{ marginBottom: 2, marginTop: 2 }}>
-        <SystemText color="tone_quiet">from</SystemText>{" "}
+        <SystemInline color="tone_quiet">from</SystemInline>{" "}
         <FormatEmail value={comment.email} />
       </div>
       {comment.body}
@@ -84,7 +84,7 @@ function PostDetail(props: {
             })}
           </UnorderedList>
         ) : (
-          <SystemText color="tone_quiet">There are no comments</SystemText>
+          <SystemInline color="tone_quiet">There are no comments</SystemInline>
         )}
       </section>
     </div>

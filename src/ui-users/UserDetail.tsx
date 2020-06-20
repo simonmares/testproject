@@ -1,6 +1,6 @@
 import React from "react";
 import { UserPayload } from "src/domain-users/types";
-import { VSpace, SystemText } from "src/ui-styles/system";
+import { VSpace, SystemInline } from "src/ui-styles/system";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { mq } from "src/utils-styles/responsive";
 import { UserIcon } from "src/ui-icons/UserIcon";
@@ -151,18 +151,18 @@ export function UserDetail(props: {
             />{" "}
             {user.name}
           </Heading>
-          <SystemText fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
+          <SystemInline fontSize={1} css={{ marginLeft: 16 }} color="tone_quiet">
             &#64;{user.username}
-          </SystemText>
+          </SystemInline>
         </section>
 
         <VSpace />
 
         <section>
           Works at{" "}
-          <SystemText css={{ fontWeight: 600 }} color="text_700" as="strong">
+          <SystemInline css={{ fontWeight: 600 }} color="text_700" as="strong">
             {user.company.name}
-          </SystemText>{" "}
+          </SystemInline>{" "}
           ({user.company.bs}).
         </section>
       </div>

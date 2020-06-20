@@ -28,7 +28,7 @@ export function HSpace(props: { size?: ResponsiveStyleProp<SpacingSize> }) {
 /**
  * Accepts only system-aware props.
  */
-export function SystemText(
+export function SystemInline(
   props: WithHtmlProps<{
     children: React.ReactNode;
     as?: HtmlTagComponents;
