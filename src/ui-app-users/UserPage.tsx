@@ -5,7 +5,7 @@ import { useFetchResource } from "src/pkg-resources/useFetchResource";
 import { UserPayload } from "src/domain-users/types";
 import { NotFoundLayout } from "src/ui-app/NotFoundLayout";
 import { useRouter } from "next/dist/client/router";
-import { PageTitle } from "src/ui-design/PageTitle";
+import { PageHeading } from "src/ui-design/PageHeading";
 import { UserDetail } from "src/ui-users/UserDetail";
 import { UserIcon } from "src/ui-icons/UserIcon";
 import { HSpace, VSpace } from "src/ui-styles/system";
@@ -13,6 +13,7 @@ import { Heading } from "src/ui-styles/structure";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { useLazyResource } from "src/pkg-resources/useLazyResource";
 import { CommentPayload, PostPayload } from "src/domain-posts/types";
+import { PageHeadTitle } from "src/ui-app/appHead";
 
 export function UserPage(props: {}) {
   const router = useRouter();
@@ -33,6 +34,7 @@ export function UserPage(props: {}) {
   const user = userResource.data;
   return (
     <DefaultLayout>
+      <PageHeadTitle title={user.name} />
       <UserDetail user={user} userPostsResource={userPostsResource} />
     </DefaultLayout>
   );

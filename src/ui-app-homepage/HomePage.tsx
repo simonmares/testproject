@@ -1,13 +1,14 @@
 import React from "react";
 
 import { DefaultLayout } from "../ui-app/DefaultLayout";
-import { PageTitle } from "src/ui-design/PageTitle";
+import { PageHeading } from "src/ui-design/PageHeading";
 import { TextLink } from "src/ui-base/links";
 import { useFetchList } from "src/pkg-resources/useFetchList";
 import { PostPayload } from "src/domain-posts/types";
 import { PostListing } from "src/ui-posts/PostListing";
 import { VSpace } from "src/ui-styles/system";
 import { PostSmallCard } from "src/ui-posts/PostSmallCard";
+import { PageHeadTitle } from "src/ui-app/appHead";
 
 export function HomePage(props: {}) {
   const postsResource = useFetchList<PostPayload, unknown>(
@@ -16,7 +17,7 @@ export function HomePage(props: {}) {
   const posts = (postsResource.data || []).slice(0, 10);
   return (
     <DefaultLayout>
-      <PageTitle>Latest 10 posts</PageTitle>
+      <PageHeading>Latest 10 posts</PageHeading>
 
       <VSpace size={[1, 2, 3]} />
 

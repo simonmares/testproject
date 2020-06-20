@@ -12,13 +12,14 @@ import { VSpace } from "src/ui-styles/system";
 import { UserPayload } from "src/domain-users/types";
 import { TextLink } from "src/ui-base/links";
 import { PageInlineNotification } from "src/ui-base/PageInlineNotification";
-import { PageTitle } from "src/ui-design/PageTitle";
+import { PageHeading } from "src/ui-design/PageHeading";
 import { SystemText } from "src/ui-styles/system";
 import { Heading } from "src/ui-styles/structure";
 import { UnorderedList } from "src/ui-styles/resetHtml";
 import { mq } from "src/utils-styles/responsive";
 import { FormatEmail } from "src/ui-format/strings";
 import { useTheme } from "src/pkg-theme/useTheme";
+import { PageHeadTitle } from "src/ui-app/appHead";
 
 function PostComment(props: { comment: CommentPayload }) {
   const { comment } = props;
@@ -59,37 +60,33 @@ function PostDetail(props: {
       </div>
       <VSpace size={3} />
 
-      <div css={{ padding: 16 }}>
-        <article>{post.body}</article>
-        <VSpace size={3} />
-        <section
-          css={{
-            width: 600,
-            maxWidth: "100%",
-            boxSizing: "border-box",
-          }}
-        >
-          <Heading level={3}>Comments</Heading>
-          <VSpace />
-          {comments.length > 0 ? (
-            <UnorderedList>
-              {comments.map((item) => {
-                return (
-                  <React.Fragment key={item.id}>
-                    <li css={{ marginBottom: 16 }}>
-                      <PostComment comment={item} />
-                    </li>
-                  </React.Fragment>
-                );
-              })}
-            </UnorderedList>
-          ) : (
-            <SystemText color="tone_quiet">
-              There are no comments
-            </SystemText>
-          )}
-        </section>
-      </div>
+      <article>{post.body}</article>
+      <VSpace size={3} />
+      <section
+        css={{
+          width: 600,
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <Heading level={3}>Comments</Heading>
+        <VSpace />
+        {comments.length > 0 ? (
+          <UnorderedList>
+            {comments.map((item) => {
+              return (
+                <React.Fragment key={item.id}>
+                  <li css={{ marginBottom: 16 }}>
+                    <PostComment comment={item} />
+                  </li>
+                </React.Fragment>
+              );
+            })}
+          </UnorderedList>
+        ) : (
+          <SystemText color="tone_quiet">There are no comments</SystemText>
+        )}
+      </section>
     </div>
   );
 }
@@ -129,6 +126,8 @@ export function PostPage(props: {}) {
   const commentsFetchFailed = !commentsResource.data;
   return (
     <DefaultLayout>
+      <PageHeadTitle title={post.title} />
+
       {commentsFetchFailed ? (
         <PageInlineNotification.Layout>
           <PageInlineNotification tone="warning">

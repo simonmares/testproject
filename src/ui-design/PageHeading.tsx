@@ -2,7 +2,7 @@ import React from "react";
 
 import { Heading } from "src/ui-styles/structure";
 
-export function PageTitle(props: { children: React.ReactNode }) {
+export function PageHeading(props: { children: React.ReactNode }) {
   return (
     <Heading level={1}>
       <span
