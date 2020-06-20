@@ -8,6 +8,7 @@ import { PostPayload } from "src/domain-posts/types";
 import { PostListing } from "src/ui-posts/PostListing";
 import { VSpace } from "src/ui-styles/system";
 import { PostMediumCard } from "src/ui-posts/PostMediumCard";
+import { postsLinks } from "src/ui-app-posts";
 
 export function HomePage(props: {}) {
   const postsResource = useFetchList<PostPayload, unknown>(
@@ -25,7 +26,11 @@ export function HomePage(props: {}) {
       <VSpace size={3} />
 
       <div css={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-        <TextLink variant="primary" css={{ fontSize: 28 }} href="/post">
+        <TextLink
+          variant="primary"
+          css={{ fontSize: 28 }}
+          link={postsLinks.listPosts}
+        >
           More posts...
         </TextLink>
       </div>
