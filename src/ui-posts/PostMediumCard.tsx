@@ -1,6 +1,6 @@
 import React from "react";
 import { PostPayload } from "src/domain-posts/types";
-import { BlockLink, TextLink, FakeTextLink } from "src/ui-base/links";
+import { BlockLink, FakeTextLink } from "src/ui-base/links";
 import { Heading } from "src/ui-styles/structure";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { LinedText } from "src/ui-design/LinedText";

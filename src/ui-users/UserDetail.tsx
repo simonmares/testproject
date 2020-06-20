@@ -4,13 +4,10 @@ import { VSpace, SystemInline } from "src/ui-styles/system";
 import { useTheme } from "src/pkg-theme/useTheme";
 import { mq } from "src/utils-styles/responsive";
 import { UserIcon } from "src/ui-icons/UserIcon";
-import { UnorderedList } from "src/ui-styles/resetHtml";
 import { FormatEmail, FormatPhone, FormatWebsite } from "src/ui-format/strings";
 import { Heading } from "src/ui-styles/structure";
-import { WithHtmlProps } from "src/app-types/components";
 import { MailIcon } from "src/ui-icons/MailIcon";
 import { PhoneIcon } from "src/ui-icons/PhoneIcon";
-import { LinkIcon } from "src/ui-icons/LinkIcon";
 import { WebIcon } from "src/ui-icons/WebIcon";
 import { LazyResource } from "src/pkg-resources/types";
 import { PostPayload } from "src/domain-posts/types";
@@ -118,16 +115,12 @@ function InfoSection(props: { user: UserPayload }) {
   );
 }
 
-function InfoBlockListItem(props: { children: React.ReactNode }) {
-  return <li {...props} />;
-}
-
 export function UserDetail(props: {
   user: UserPayload;
   userPostsResource: LazyResource<PostPayload[]>;
 }) {
   const { user, userPostsResource } = props;
-  const { colors, system } = useTheme();
+  const { colors } = useTheme();
 
   React.useEffect(() => {
     userPostsResource.lazyLoad();

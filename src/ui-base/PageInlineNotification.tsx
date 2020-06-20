@@ -1,5 +1,4 @@
 import React from "react";
-import { AppTheme } from "src/pkg-theme/types";
 
 export function PageInlineNotification(props: {
   children: React.ReactNode;

@@ -1,6 +1,5 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { HtmlTagComponents } from "src/utils-react/types";
 
 export function LinedText(
   props: React.ComponentProps<"span"> & { lines: number }

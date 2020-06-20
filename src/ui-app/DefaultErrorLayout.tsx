@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DefaultLayout } from "./DefaultLayout";
 
 export function DefaultErrorLayout(props: {}) {

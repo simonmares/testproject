@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useFetchResource } from "./useFetchResource";
 import { FetchResourceKey } from "./types";
 

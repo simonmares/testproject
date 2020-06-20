@@ -2,7 +2,6 @@ import React from "react";
 
 import { AppHeader } from "./AppHeader";
 import { AppFooter } from "./AppFooter";
-import { mq } from "src/utils-styles/responsive";
 import { PageLoader } from "src/ui-design/PageLoader";
 import { AppErrorBoundary } from "./AppErrorBoundary";
 

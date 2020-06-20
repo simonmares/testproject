@@ -5,19 +5,13 @@ import { useFetchResource } from "src/pkg-resources/useFetchResource";
 import { UserPayload } from "src/domain-users/types";
 import { NotFoundLayout } from "src/ui-app/NotFoundLayout";
 import { useRouter } from "next/dist/client/router";
-import { PageHeading } from "src/ui-design/PageHeading";
 import { UserDetail } from "src/ui-users/UserDetail";
-import { UserIcon } from "src/ui-icons/UserIcon";
-import { HSpace, VSpace } from "src/ui-styles/system";
-import { Heading } from "src/ui-styles/structure";
-import { useTheme } from "src/pkg-theme/useTheme";
 import { useLazyResource } from "src/pkg-resources/useLazyResource";
-import { CommentPayload, PostPayload } from "src/domain-posts/types";
+import { PostPayload } from "src/domain-posts/types";
 import { PageHeadTitle } from "src/ui-app/appHead";
 
 export function UserPage(props: {}) {
   const router = useRouter();
-  const { colors } = useTheme();
   const userId = router.query.id;
   const userResource = useFetchResource<UserPayload>(
     `https://jsonplaceholder.typicode.com/users/${userId}/`

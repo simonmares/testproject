@@ -1,9 +1,7 @@
 import React from "react";
 import { PostPayload } from "src/domain-posts/types";
-import { TextLink, BlockLink } from "src/ui-base/links";
 import { mq } from "src/utils-styles/responsive";
 import { UnorderedList } from "src/ui-styles/resetHtml";
-import { Heading } from "src/ui-styles/structure";
 
 export function PostListing(props: {
   items: PostPayload[];

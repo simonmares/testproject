@@ -1,4 +1,4 @@
-import React, { forwardRef, RefObject } from "react";
+import React, { forwardRef } from "react";
 
 // from https://github.com/feathericons/react-feather
 export function createIcon(

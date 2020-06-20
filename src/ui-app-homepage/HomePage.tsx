@@ -8,7 +8,6 @@ import { PostPayload } from "src/domain-posts/types";
 import { PostListing } from "src/ui-posts/PostListing";
 import { VSpace } from "src/ui-styles/system";
 import { PostSmallCard } from "src/ui-posts/PostSmallCard";
-import { PageHeadTitle } from "src/ui-app/appHead";
 
 export function HomePage(props: {}) {
   const postsResource = useFetchList<PostPayload, unknown>(
