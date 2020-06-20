@@ -115,6 +115,14 @@ function InfoSection(props: { user: UserPayload }) {
   );
 }
 
+type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
+  ? A
+  : never;
+
+function useEffectOnMount(fn: ArgumentTypes<typeof React.useEffect>[0]) {
+  React.useEffect(fn, []); // eslint-disable-line
+}
+
 export function UserDetail(props: {
   user: UserPayload;
   userPostsResource: LazyResource<PostPayload[]>;
@@ -122,9 +130,9 @@ export function UserDetail(props: {
   const { user, userPostsResource } = props;
   const { colors } = useTheme();
 
-  React.useEffect(() => {
+  useEffectOnMount(() => {
     userPostsResource.lazyLoad();
-  }, []);
+  });
 
   return (
     <div>
